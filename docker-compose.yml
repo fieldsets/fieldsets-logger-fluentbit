@@ -1,0 +1,42 @@
+version: '3.7'
+services:
+    fieldsets-logger:
+        image: ${CONTAINER_REGISTRY:-fieldsets}/docker-logger:${EVENT_LOGGER_VERSION:-latest}
+        build:
+            context: ./
+            dockerfile: ${EVENT_LOGGER_CONFIG_PATH:-./}Dockerfile
+            args:
+                EVENT_LOGGER_VERSION: ${EVENT_LOGGER_VERSION:-latest}
+        container_name: fieldsets-logger
+        hostname: fieldsets-logger
+        ports:
+            - ${EVENT_LOGGER_PORT:-24224}:${EVENT_LOGGER_PORT:-24224}
+            - ${EVENT_LOGGER_PORT:-24224}:${EVENT_LOGGER_PORT:-24224}/udp
+        environment:
+            EVENT_LOGGER_HOST: ${EVENT_LOGGER_HOST:-172.28.0.2}
+            EVENT_LOGGER_PORT: ${EVENT_LOGGER_PORT:-24224}
+            EVENT_LOGGER_LEVEL: ${EVENT_LOGGER_LEVEL:-info}
+            POSTGRES_USER: ${POSTGRES_USER:-postgres}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-fieldsets}
+            POSTGRES_HOST: ${POSTGRES_HOST:-172.28.0.7}
+            POSTGRES_DB: ${POSTGRES_DB:-fieldsets}
+            POSTGRES_PORT: ${POSTGRES_PORT:-5432}
+            PGOPTIONS: "-c search_path=pipeline"
+            DEBUG_MODE: ${DEBUG_MODE:-true}
+            LOGGING_ENABLED: ${LOGGING_ENABLED:-false} # Write logs to DB
+        restart: on-failure
+        volumes:
+            - ${EVENT_LOGGER_CONFIG_PATH:-./}fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
+            - ${EVENT_LOGGER_CONFIG_PATH:-./}parsers.conf:/fluent-bit/etc/parsers.conf
+        networks:
+            default:
+                ipv4_address: ${EVENT_LOGGER_HOST:-172.28.0.2}
+
+networks:
+    default:
+        driver: bridge
+        name: fieldsets_network
+        attachable: true
+        ipam:
+            config:
+            - subnet: ${FIELDSETS_LOCAL_NETWORK_SUBNET:-172.28.0.0/24}

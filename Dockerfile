@@ -1,0 +1,2 @@
+ARG EVENT_LOGGER_VERSION
+FROM fluent/fluent-bit:${EVENT_LOGGER_VERSION:-latest}

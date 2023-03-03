@@ -1,0 +1,8 @@
+.env
+*.env
+./docker-compose.override.yml
+
+# Editor output
+.vscode/
+.editorconfig
+.DS_Store
