@@ -9,7 +9,7 @@ Add the following code in `docker-compose.override.yml` to the service you wish 
 logging:
     driver: fluentd
     options:
-        fluentd-address: ${EVENT_LOGGER_HOST:-172.28.0.2}:${EVENT_LOGGER_PORT:-24224}
+        fluentd-address: ${LOGGER_HOST:-172.28.0.2}:${LOGGER_PORT:-24224}
         tag: debug_log
         fluentd-async: "true"
         env: "PGOPTIONS='-c search_path=pipeline'"

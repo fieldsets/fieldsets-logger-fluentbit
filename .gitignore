@@ -2,6 +2,12 @@
 *.env
 ./docker-compose.override.yml
 
+./src/*
+./src
+
+./plugins/*
+./plugins
+
 # Editor output
 .vscode/
 .editorconfig
