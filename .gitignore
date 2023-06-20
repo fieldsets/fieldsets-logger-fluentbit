@@ -8,6 +8,9 @@
 ./plugins/*
 ./plugins
 
+./certs
+./certs/*
+
 # Editor output
 .vscode/
 .editorconfig
