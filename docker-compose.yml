@@ -22,8 +22,8 @@ services:
             POSTGRES_DB: ${POSTGRES_DB:-fieldsets}
             POSTGRES_PORT: ${POSTGRES_PORT:-5432}
             PGOPTIONS: "-c search_path=pipeline"
-            DEBUG_MODE: ${DEBUG_MODE:-true}
-            LOGGING_ENABLED: ${LOGGING_ENABLED:-false} # Write logs to DB
+            ENABLE_DEBUG_MODE: ${ENABLE_DEBUG_MODE:-true}
+            ENABLE_LOGGING: ${ENABLE_LOGGING:-false} # Write logs to DB
         restart: on-failure
         volumes:
             - ${LOGGER_CONFIG_PATH:-./}fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
