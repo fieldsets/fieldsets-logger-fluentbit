@@ -1,4 +1,3 @@
-version: '3.7'
 services:
     fieldsets-logger:
         image: ${CONTAINER_REGISTRY:-fieldsets}/docker-logger:${LOGGER_VERSION:-latest}
