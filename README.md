@@ -1,6 +1,6 @@
 # Fieldsets Event Logger
 
-We utilize the lightweight Fluent Bit log forwarder to centralize our logs and create our custom fieldsets container events. These events are recorded in our PostgreSQL database as a table that is partitioned by year/month. For speed purposes, the tables found in the PostgreSQL `pipeline` schema do not write to the Write-Ahead-Log (WAL) and are set as `UNLOGGED`.
+We utilize the lightweight Fluent Bit log aggregator to centralize our logs and create our custom fieldsets container events. These events are recorded in our PostgreSQL database as a table that is partitioned by year/month. For speed purposes, the tables found in the PostgreSQL `pipeline` schema do not write to the Write-Ahead-Log (WAL) and are set as `UNLOGGED`.
 
 You can run this logger as a docker service or you can follow the instructions here to install a standalone binary. This binary can the be utilized with the included conf files.
 
