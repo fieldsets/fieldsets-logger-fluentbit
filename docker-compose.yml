@@ -15,7 +15,7 @@ services:
             LOGGER_HOST: ${LOGGER_HOST:-172.28.0.2}
             LOGGER_PORT: ${LOGGER_PORT:-24224}
             LOGGER_LEVEL: ${LOGGER_LEVEL:-info}
-            POSTGRES_USER: ${POSTGRES_USER:-postgres}
+            POSTGRES_USER: ${POSTGRES_USER:-fieldsets}
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-fieldsets}
             POSTGRES_HOST: ${POSTGRES_HOST:-172.28.0.7}
             POSTGRES_DB: ${POSTGRES_DB:-fieldsets}
